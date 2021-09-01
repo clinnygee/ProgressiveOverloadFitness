@@ -3,26 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardActivity">
-
-    <activity
-        android:id="@+id/dashboardActivity"
-        android:name="com.example.progressiveoverloadfitness.DashboardActivity"
-        android:label="activity_dashboard"
-        tools:layout="@layout/activity_dashboard" />
-    <activity
-        android:id="@+id/historyActivity"
-        android:name="com.example.progressiveoverloadfitness.HistoryActivity"
-        android:label="activity_history"
-        tools:layout="@layout/activity_history" />
-    <activity
-        android:id="@+id/workoutActivity"
-        android:name="com.example.progressiveoverloadfitness.WorkoutActivity"
-        android:label="activity_workout"
-        tools:layout="@layout/activity_workout" />
-    <activity
-        android:id="@+id/exercisesActivity"
-        android:name="com.example.progressiveoverloadfitness.ExercisesActivity"
-        android:label="activity_exercises"
-        tools:layout="@layout/activity_exercises" />
+    app:startDestination="@id/dashboardFragment">
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.progressiveoverloadfitness.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.progressiveoverloadfitness.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.progressiveoverloadfitness.WorkoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.example.progressiveoverloadfitness.ExercisesFragment"
+        android:label="fragment_exercises"
+        tools:layout="@layout/fragment_exercises" />
 </navigation>

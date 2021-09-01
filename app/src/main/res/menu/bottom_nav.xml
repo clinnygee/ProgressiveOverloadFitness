@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/dashboardActivity"
+        android:id="@+id/dashboardFragment"
         android:title="Dashboard"
         android:icon="@drawable/ic_baseline_dashboard_24"
         />
     <item
-        android:id="@+id/historyActivity"
+        android:id="@+id/historyFragment"
         android:title="History"
         android:icon="@drawable/ic_baseline_access_time_24"
         />
     <item
-        android:id="@+id/workoutActivity"
+        android:id="@+id/workoutFragment"
         android:title="Workout"
         android:icon="@drawable/ic_baseline_add_24"
         />
     <item
-        android:id="@+id/exercisesActivity"
+        android:id="@+id/exercisesFragment"
         android:title="Exercises"
         android:icon="@drawable/ic_baseline_sports_mma_24"
         />
