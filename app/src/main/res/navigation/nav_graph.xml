@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardActivity">
+
+    <activity
+        android:id="@+id/dashboardActivity"
+        android:name="com.example.progressiveoverloadfitness.DashboardActivity"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
+    <activity
+        android:id="@+id/historyActivity"
+        android:name="com.example.progressiveoverloadfitness.HistoryActivity"
+        android:label="activity_history"
+        tools:layout="@layout/activity_history" />
+    <activity
+        android:id="@+id/workoutActivity"
+        android:name="com.example.progressiveoverloadfitness.WorkoutActivity"
+        android:label="activity_workout"
+        tools:layout="@layout/activity_workout" />
+    <activity
+        android:id="@+id/exercisesActivity"
+        android:name="com.example.progressiveoverloadfitness.ExercisesActivity"
+        android:label="activity_exercises"
+        tools:layout="@layout/activity_exercises" />
+</navigation>
