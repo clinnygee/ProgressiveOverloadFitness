@@ -33,4 +33,8 @@ public class Exercises {
     public String getBodyPart(){
         return this.bodyPart;
     }
+
+    public int getId(){ return this.id;}
+
+    public void setId(int id){ this.id = id;}
 }

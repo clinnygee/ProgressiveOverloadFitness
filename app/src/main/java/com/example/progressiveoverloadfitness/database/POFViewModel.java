@@ -19,7 +19,7 @@ public class POFViewModel extends AndroidViewModel {
         mAllExercises = mPOFRepository.getAllExercises();
     }
 
-    LiveData<List<Exercises>> getAllExercises(){
+    public LiveData<List<Exercises>> getAllExercises(){
         return mAllExercises;
     }
 

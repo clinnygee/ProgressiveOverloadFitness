@@ -5,9 +5,25 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/exercisesTextView"
+        android:id="@+id/exerciseTitle"
         style="@style/word_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_light" />
+        android:textColor="@color/black"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+         />
+
+    <TextView
+        android:id="@+id/exerciseBodyPart"
+        style="@style/word_sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:lineHeight="@dimen/no_padding"
+        android:textColor="@color/grey_text"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="0dp"
+        android:layout_marginBottom="8dp"
+        />
 </LinearLayout>
