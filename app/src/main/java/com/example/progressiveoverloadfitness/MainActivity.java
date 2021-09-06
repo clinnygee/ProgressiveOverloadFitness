@@ -12,6 +12,8 @@ import android.os.Bundle;
 import com.example.progressiveoverloadfitness.database.POFViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     private POFViewModel mPOFViewModel;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 //        find the bottom navagation definition, and create a bottomnavigationview from it
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigatin_view);

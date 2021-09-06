@@ -8,10 +8,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.progressiveoverloadfitness.database.dao.ExercisesDao;
+import com.example.progressiveoverloadfitness.database.model.Exercise;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Exercises.class}, version = 1, exportSchema = true)
+@Database(entities = {Exercise.class}, version = 2, exportSchema = false)
 public abstract class POFRoomDatabase extends RoomDatabase {
 
     public abstract ExercisesDao exercisesDao();
@@ -22,11 +25,12 @@ public abstract class POFRoomDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static POFRoomDatabase getDatabase(final Context context){
+//        context.deleteDatabase("pof_database");
         if(INSTANCE == null){
             synchronized (POFRoomDatabase.class){
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            POFRoomDatabase.class, "pof_database").addCallback(sRoomDatabaseSeeder).build();
+                            POFRoomDatabase.class, "pof_database").fallbackToDestructiveMigration().addCallback(sRoomDatabaseSeeder).build();
                 }
             }
         }
@@ -42,13 +46,13 @@ public abstract class POFRoomDatabase extends RoomDatabase {
                 ExercisesDao exercisesDao = INSTANCE.exercisesDao();
                 exercisesDao.deleteAll();
 
-                Exercises exercise = new Exercises("Barbell Bench Press", "", "Chest");
+                Exercise exercise = new Exercise("Barbell Bench Press", "", "Chest");
                 exercisesDao.insert(exercise);
-                exercise = new Exercises("Barbell Squat", "", "Legs");
+                exercise = new Exercise("Barbell Squat", "", "Legs");
                 exercisesDao.insert(exercise);
-                exercise = new Exercises("Barbell Deadlift", "", "Legs");
+                exercise = new Exercise("Barbell Deadlift", "", "Legs");
                 exercisesDao.insert(exercise);
-                exercise = new Exercises("Barbell OHP", "", "Shoulders");
+                exercise = new Exercise("Barbell OHP", "", "Shoulders");
                 exercisesDao.insert(exercise);
             });
         }

@@ -1,8 +1,10 @@
-package com.example.progressiveoverloadfitness;
+package com.example.progressiveoverloadfitness.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.progressiveoverloadfitness.R;
 
 public class DashboardActivity extends AppCompatActivity {
 

@@ -1,13 +1,14 @@
-package com.example.progressiveoverloadfitness.database;
+package com.example.progressiveoverloadfitness.database.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "exercises")
-public class Exercises {
+@Entity(tableName = "exercise")
+public class Exercise {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "exercise_id")
     private int id;
     @ColumnInfo(name = "name")
     private String name;
@@ -16,7 +17,7 @@ public class Exercises {
     @ColumnInfo(name = "body_part")
     private String bodyPart;
 
-    public Exercises(@NonNull String name, String description, @NonNull String bodyPart){
+    public Exercise(@NonNull String name, String description, @NonNull String bodyPart){
         this.name = name;
         this.description = description;
         this.bodyPart = bodyPart;

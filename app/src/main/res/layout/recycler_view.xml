@@ -4,26 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/exerciseTitle"
-        style="@style/word_title"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="0dp"
-         />
+        android:layout_height="60dp">
 
-    <TextView
-        android:id="@+id/exerciseBodyPart"
-        style="@style/word_sub"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/exerciseTitle"
+            style="@style/word_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="16sp"
+            android:textColor="@color/black" />
 
-        android:lineHeight="@dimen/no_padding"
-        android:textColor="@color/grey_text"
-        android:includeFontPadding="false"
-        android:lineSpacingExtra="0dp"
-        android:layout_marginBottom="8dp"
-        />
+        <TextView
+            android:id="@+id/exerciseBodyPart"
+            style="@style/word_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:lineHeight="@dimen/no_padding"
+            android:textColor="@color/grey_text"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:layout_marginBottom="8dp"
+            />
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>

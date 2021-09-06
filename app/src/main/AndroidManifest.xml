@@ -14,7 +14,7 @@
         <activity android:name=".HistoryActivity"></activity>
         <activity android:name=".WorkoutActivity" />
         <activity android:name=".ExercisesActivity" />
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".views.DashboardActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

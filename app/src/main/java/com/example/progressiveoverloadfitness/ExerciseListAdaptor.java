@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import com.example.progressiveoverloadfitness.database.Exercises;
+import com.example.progressiveoverloadfitness.database.model.Exercise;
 
-public class ExerciseListAdaptor extends ListAdapter<Exercises, ExerciseViewHolder> {
+public class ExerciseListAdaptor extends ListAdapter<Exercise, ExerciseViewHolder> {
 
-    public ExerciseListAdaptor(@NonNull DiffUtil.ItemCallback<Exercises> diffCallBack){
+    public ExerciseListAdaptor(@NonNull DiffUtil.ItemCallback<Exercise> diffCallBack){
         super(diffCallBack);
     }
 
@@ -21,19 +21,19 @@ public class ExerciseListAdaptor extends ListAdapter<Exercises, ExerciseViewHold
 
     @Override
     public void onBindViewHolder(ExerciseViewHolder holder, int position){
-        Exercises current = getItem(position);
+        Exercise current = getItem(position);
         holder.bind(current.getName(), current.getBodyPart());
     }
 
-    static class ExerciseDiff extends DiffUtil.ItemCallback<Exercises>{
+    static class ExerciseDiff extends DiffUtil.ItemCallback<Exercise>{
 
         @Override
-        public boolean areItemsTheSame(@NonNull Exercises oldItem, @NonNull Exercises newItem){
+        public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem){
             return oldItem == newItem;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Exercises oldItem, @NonNull Exercises newItem) {
+        public boolean areContentsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem) {
             return oldItem.getName().equals(newItem.getName());
         }
     }
