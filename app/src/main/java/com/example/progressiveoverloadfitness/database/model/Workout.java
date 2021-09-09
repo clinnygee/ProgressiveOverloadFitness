@@ -1,5 +1,6 @@
 package com.example.progressiveoverloadfitness.database.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -18,4 +19,10 @@ public class Workout {
 
     @ColumnInfo(name = "end_time")
     public String endTime;
+
+    public Workout(boolean completed, @NonNull String startTime, @NonNull String endTime){
+        this.completed = completed;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 }

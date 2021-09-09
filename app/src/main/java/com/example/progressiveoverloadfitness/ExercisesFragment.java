@@ -69,6 +69,7 @@ public class ExercisesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
+        getActivity().setTitle("Exercises");
         recyclerView = view.findViewById(R.id.recyclerview);
         final ExerciseListAdaptor adapter = new ExerciseListAdaptor(new ExerciseListAdaptor.ExerciseDiff());
         recyclerView.setAdapter(adapter);

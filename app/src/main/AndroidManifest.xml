@@ -12,10 +12,14 @@
 
         >
         <activity android:name=".HistoryActivity"></activity>
-        <activity android:name=".WorkoutActivity" />
+        <activity android:name=".views.workout.WorkoutActivity" />
         <activity android:name=".ExercisesActivity" />
-        <activity android:name=".views.DashboardActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.DashboardActivity"
+            android:launchMode="singleTask"
+            />
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,5 +1,6 @@
 package com.example.progressiveoverloadfitness.database.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -30,4 +31,8 @@ public class WorkoutExercise {
         @ColumnInfo(name = "workout_id")
         public int workoutId;
 
+        public WorkoutExercise(@NonNull int exerciseId, @NonNull int workoutId){
+                this.exerciseId = exerciseId;
+                this.workoutId = workoutId;
+        }
 }

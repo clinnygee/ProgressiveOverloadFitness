@@ -3,25 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashboardFragment">
-    <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.progressiveoverloadfitness.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+    app:startDestination="@id/dashboardFragment2">
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.progressiveoverloadfitness.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
-        android:id="@+id/workoutFragment"
-        android:name="com.example.progressiveoverloadfitness.WorkoutFragment"
-        android:label="fragment_workout"
-        tools:layout="@layout/fragment_workout" />
-    <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.example.progressiveoverloadfitness.ExercisesFragment"
         android:label="fragment_exercises"
         tools:layout="@layout/fragment_exercises" />
+    <activity
+        android:id="@+id/workoutActivity"
+        android:name="com.example.progressiveoverloadfitness.views.workout.WorkoutActivity"
+        android:label="WorkoutActivity"
+        tools:layout="@layout/activity_workout"
+        />
+
+    <fragment
+        android:id="@+id/dashboardFragment2"
+        android:name="com.example.progressiveoverloadfitness.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
 </navigation>
