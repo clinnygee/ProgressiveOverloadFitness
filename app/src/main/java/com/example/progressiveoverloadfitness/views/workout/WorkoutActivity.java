@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class WorkoutActivity extends AppCompatActivity {
     Button startWorkout;
     WorkoutFragment workoutFragment;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,32 +26,51 @@ public class WorkoutActivity extends AppCompatActivity {
         setTitle("Workout");
 
         //        find the bottom navagation definition, and create a bottomnavigationview from it
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigatin_view);
+        bottomNavigationView = findViewById(R.id.bottom_navigatin_view);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_fragment);
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.nav_fragment, WorkoutFragment.class, null)
+                    .commit();
+        }
 //        ExerciseListAdaptor adapter = new ExerciseListAdaptor(new ExerciseListAdaptor.ExerciseDiff());
 //        mPOFViewModel = new ViewModelProvider(this).get(POFViewModel.class);
 //
 //        mPOFViewModel.getAllExercises().observe(this, exercises -> {
 //            adapter.submitList(exercises);
 //        });
-        startWorkout = findViewById(R.id.startWorkout);
 
-        startWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startWorkout(v);
-            }
-        });
     }
 
-    protected void startWorkout(View v){
+    protected void startWorkout(){
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .add(R.id.workout_fragment_container, WorkoutFragment.class,null)
+                .replace(R.id.nav_fragment, PerformWorkoutFragment.class,null)
                 .commit();
+
+        bottomNavigationView.setVisibility(View.INVISIBLE);
+
+//        View container = findViewById(R.id.nav_fragment);
+//
+//        container.setVisibility(View.INVISIBLE);
+    }
+
+    protected void endWorkout(){
+        Fragment workoutFragment =  getSupportFragmentManager().findFragmentById(R.id.workout_fragment_container);
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.nav_fragment, WorkoutFragment.class, null)
+                .commit();
+
+        bottomNavigationView.setVisibility(View.VISIBLE);
+
+//        View container = findViewById(R.id.nav_fragment);
+//
+//        container.setVisibility(View.VISIBLE);
     }
 }

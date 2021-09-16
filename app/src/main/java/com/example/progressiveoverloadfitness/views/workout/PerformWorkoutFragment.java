@@ -12,26 +12,34 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.progressiveoverloadfitness.R;
+import com.example.progressiveoverloadfitness.database.model.Set;
+import com.example.progressiveoverloadfitness.database.model.Workout;
+import com.example.progressiveoverloadfitness.database.model.WorkoutExercise;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link WorkoutFragment#newInstance} factory method to
+ * Use the {@link PerformWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WorkoutFragment extends Fragment {
+public class PerformWorkoutFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    Button startWorkout;
-
+    ArrayList<WorkoutExercise> workoutExercises;
+    ArrayList<Set> sets;
+    Workout workoutData;
+    Button cancelWorkout;
+    Button finishWorkout;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public WorkoutFragment() {
+    public PerformWorkoutFragment() {
         // Required empty public constructor
     }
 
@@ -41,15 +49,15 @@ public class WorkoutFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment WorkoutFragment.
+     * @return A new instance of fragment PerformWorkoutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WorkoutFragment newInstance() {
-        WorkoutFragment fragment = new WorkoutFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
+    public static PerformWorkoutFragment newInstance(String param1, String param2) {
+        PerformWorkoutFragment fragment = new PerformWorkoutFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -60,32 +68,29 @@ public class WorkoutFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_workout, container, false);
+        return inflater.inflate(R.layout.fragment_perform_workout, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        startWorkout = view.findViewById(R.id.startWorkout);
+
+        cancelWorkout = view.findViewById(R.id.cancel_workout);
 
 
-        startWorkout.setOnClickListener(new View.OnClickListener() {
+
+        cancelWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((WorkoutActivity)getActivity()).startWorkout();
+                ((WorkoutActivity)getActivity()).endWorkout();
             }
         });
-
-
     }
 }
