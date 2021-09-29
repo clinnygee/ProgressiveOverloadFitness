@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.progressiveoverloadfitness.DashboardFragment;
 import com.example.progressiveoverloadfitness.ExercisesActivity;
 import com.example.progressiveoverloadfitness.ExercisesFragment;
 import com.example.progressiveoverloadfitness.HistoryActivity;
@@ -44,8 +45,8 @@ public class DashboardActivity extends AppCompatActivity {
 //                    .commit();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            ExercisesFragment exercisesFragment = new ExercisesFragment();
-            fragmentTransaction.replace(R.id.dashboard_fragment_container, exercisesFragment);
+            DashboardFragment dashboardFragment = new DashboardFragment();
+            fragmentTransaction.replace(R.id.dashboard_fragment_container, dashboardFragment);
             fragmentTransaction.addToBackStack("dashboard");
             fragmentTransaction.commit();
         }

@@ -19,6 +19,7 @@ import android.widget.Button;
 import com.example.progressiveoverloadfitness.ExercisesActivity;
 import com.example.progressiveoverloadfitness.HistoryActivity;
 import com.example.progressiveoverloadfitness.R;
+import com.example.progressiveoverloadfitness.views.DashboardActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -69,6 +70,10 @@ public class WorkoutActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.dashboardActivity:
+                        Intent intent0 = new Intent(WorkoutActivity.this, DashboardActivity.class);
+                        startActivity(intent0);
+                        overridePendingTransition(0,0);
                     case R.id.historyActivity:
                         Intent intent1 = new Intent(WorkoutActivity.this, HistoryActivity.class);
                         startActivity(intent1);
