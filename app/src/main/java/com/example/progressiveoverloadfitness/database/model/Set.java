@@ -22,6 +22,7 @@ import androidx.room.PrimaryKey;
 public class Set {
 
         @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "set_id")
         public int id;
 
         @ColumnInfo(name = "workout_exercise_id")

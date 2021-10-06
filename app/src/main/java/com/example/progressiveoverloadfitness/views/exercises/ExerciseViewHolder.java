@@ -1,4 +1,4 @@
-package com.example.progressiveoverloadfitness;
+package com.example.progressiveoverloadfitness.views.exercises;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.progressiveoverloadfitness.R;
 
 class ExerciseViewHolder extends RecyclerView.ViewHolder{
     private final TextView exerciseTitle;

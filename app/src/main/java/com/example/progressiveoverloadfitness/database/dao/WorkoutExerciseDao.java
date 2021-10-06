@@ -18,4 +18,7 @@ public interface WorkoutExerciseDao {
 
     @Query("Select * FROM workout_exercise")
     LiveData<List<WorkoutExercise>> getAllWorkoutExercises();
+
+    @Query("SELECT workout_exercise_id FROM workout_exercise WHERE workout_id = :workoutId AND exercise_id = :exerciseId")
+    int findIdByExerciseAndWorkoutId(int workoutId, int exerciseId);
 }

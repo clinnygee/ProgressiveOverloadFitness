@@ -2,19 +2,13 @@ package com.example.progressiveoverloadfitness;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.progressiveoverloadfitness.database.POFViewModel;
-import com.example.progressiveoverloadfitness.views.DashboardActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
+import com.example.progressiveoverloadfitness.views.dashboard.DashboardActivity;
+import com.example.progressiveoverloadfitness.views.exercises.ExerciseListAdaptor;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -21,4 +21,7 @@ public interface ExercisesDao {
 
     @Query("SELECT * FROM Exercise ORDER BY name ASC")
     LiveData<List<Exercise>> getAlphabetizedExercises();
+
+    @Query("SELECT exercise_id FROM Exercise WHERE name = :exerciseName")
+    int getIdByName(String exerciseName);
 }

@@ -12,6 +12,7 @@ import com.example.progressiveoverloadfitness.database.model.Exercise;
 import com.example.progressiveoverloadfitness.database.model.Set;
 import com.example.progressiveoverloadfitness.database.model.Workout;
 import com.example.progressiveoverloadfitness.database.model.WorkoutExercise;
+import com.example.progressiveoverloadfitness.database.model.WorkoutWithWorkoutExercisesAndSets;
 
 import java.util.List;
 
@@ -20,28 +21,28 @@ public class POFRepository {
     private ExercisesDao mExercisesDao;
     private LiveData<List<Exercise>> mAllExercises;
 
-//    private WorkoutDao mWorkoutDao;
-//    private LiveData<List<Workout>> mAllWorkouts;
-//
-//    private WorkoutExerciseDao mWorkoutExerciseDao;
-//    private LiveData<List<WorkoutExercise>> mAllWorkoutExercise;
-//
-//    private SetDao mSetDao;
-//    private LiveData<List<Set>> mAllSets;
+    private WorkoutDao mWorkoutDao;
+    private LiveData<List<WorkoutWithWorkoutExercisesAndSets>> mAllWorkouts;
+
+    private WorkoutExerciseDao mWorkoutExerciseDao;
+    private LiveData<List<WorkoutExercise>> mAllWorkoutExercise;
+
+    private SetDao mSetDao;
+    private LiveData<List<Set>> mAllSets;
 
     POFRepository(Application application){
         POFRoomDatabase db = POFRoomDatabase.getDatabase(application);
         mExercisesDao = db.exercisesDao();
         mAllExercises = mExercisesDao.getAlphabetizedExercises();
 
-//        mWorkoutDao = db.workoutDao();
-//        mAllWorkouts = mWorkoutDao.getAllWorkouts();
-//
-//        mWorkoutExerciseDao = db.workoutExerciseDao();
-//        mAllWorkoutExercise = mWorkoutExerciseDao.getAllWorkoutExercises();
-//
-//        mSetDao = db.setDao();
-//        mAllSets = mSetDao.getAllSets();
+        mWorkoutDao = db.workoutDao();
+        mAllWorkouts = mWorkoutDao.getAllWorkoutInformation();
+
+        mWorkoutExerciseDao = db.workoutExerciseDao();
+        mAllWorkoutExercise = mWorkoutExerciseDao.getAllWorkoutExercises();
+
+        mSetDao = db.setDao();
+        mAllSets = mSetDao.getAllSets();
     }
 
     // Room executes all queries on a separate thread.
@@ -50,13 +51,13 @@ public class POFRepository {
         return mAllExercises;
     }
 
-//    LiveData<List<Workout>> getAllWorkouts(){ return mAllWorkouts;}
-//
-//    LiveData<List<WorkoutExercise>> getAllWorkoutExercises(){
-//        return mAllWorkoutExercise;
-//    }
-//
-//    LiveData<List<Set>> getAllSets(){return mAllSets;}
+    LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkouts(){ return mAllWorkouts;}
+
+    LiveData<List<WorkoutExercise>> getAllWorkoutExercises(){
+        return mAllWorkoutExercise;
+    }
+
+    LiveData<List<Set>> getAllSets(){return mAllSets;}
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.

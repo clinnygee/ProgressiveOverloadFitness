@@ -21,7 +21,7 @@ import androidx.room.PrimaryKey;
 )
 public class WorkoutExercise {
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "workout_exercise_id")
         public int id;
 

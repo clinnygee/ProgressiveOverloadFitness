@@ -1,4 +1,4 @@
-package com.example.progressiveoverloadfitness;
+package com.example.progressiveoverloadfitness.views.exercises;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.database.POFViewModel;
 
 /**
@@ -84,7 +85,7 @@ public class ExercisesFragment extends Fragment {
         mPOFViewModel.getAllExercises().observe(getActivity(), exercises -> {
             adapter.submitList(exercises);
         });
-        Log.i("1", "");
+
         return view;
     }
 }

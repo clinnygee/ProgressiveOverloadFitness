@@ -5,21 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.progressiveoverloadfitness.ExercisesActivity;
-import com.example.progressiveoverloadfitness.HistoryActivity;
+import com.example.progressiveoverloadfitness.views.exercises.ExercisesActivity;
+import com.example.progressiveoverloadfitness.views.history.HistoryActivity;
 import com.example.progressiveoverloadfitness.R;
-import com.example.progressiveoverloadfitness.views.DashboardActivity;
+import com.example.progressiveoverloadfitness.views.dashboard.DashboardActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WorkoutActivity extends AppCompatActivity {
@@ -69,6 +67,7 @@ public class WorkoutActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.d("Menu Clicked", String.valueOf(item.getItemId()));
                 switch (item.getItemId()){
                     case R.id.dashboardActivity:
                         Intent intent0 = new Intent(WorkoutActivity.this, DashboardActivity.class);

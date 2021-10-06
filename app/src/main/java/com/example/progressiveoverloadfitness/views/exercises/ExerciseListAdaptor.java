@@ -1,4 +1,4 @@
-package com.example.progressiveoverloadfitness;
+package com.example.progressiveoverloadfitness.views.exercises;
 
 import android.view.ViewGroup;
 
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.progressiveoverloadfitness.database.model.Exercise;
+import com.example.progressiveoverloadfitness.views.exercises.ExerciseViewHolder;
 
 public class ExerciseListAdaptor extends ListAdapter<Exercise, ExerciseViewHolder> {
 
@@ -25,7 +26,7 @@ public class ExerciseListAdaptor extends ListAdapter<Exercise, ExerciseViewHolde
         holder.bind(current.getName(), current.getBodyPart());
     }
 
-    static class ExerciseDiff extends DiffUtil.ItemCallback<Exercise>{
+    public static class ExerciseDiff extends DiffUtil.ItemCallback<Exercise>{
 
         @Override
         public boolean areItemsTheSame(@NonNull Exercise oldItem, @NonNull Exercise newItem){
