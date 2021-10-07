@@ -47,7 +47,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
             synchronized (POFRoomDatabase.class){
                 if(INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            POFRoomDatabase.class, "pof_database").fallbackToDestructiveMigration().addCallback(sRoomDatabaseSeeder).build();
+                            POFRoomDatabase.class, "pof_database").fallbackToDestructiveMigration().addCallback(sRoomDatabaseSeeder).allowMainThreadQueries().build();
                 }
             }
         }

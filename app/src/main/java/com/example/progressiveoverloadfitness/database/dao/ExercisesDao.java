@@ -24,4 +24,7 @@ public interface ExercisesDao {
 
     @Query("SELECT exercise_id FROM Exercise WHERE name = :exerciseName")
     int getIdByName(String exerciseName);
+
+    @Query("SELECT * FROM Exercise WHERE name = :exerciseName")
+    Exercise getByName(String exerciseName);
 }

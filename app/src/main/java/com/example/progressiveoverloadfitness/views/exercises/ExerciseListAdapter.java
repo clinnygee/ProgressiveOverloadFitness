@@ -1,5 +1,6 @@
 package com.example.progressiveoverloadfitness.views.exercises;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -7,12 +8,19 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.progressiveoverloadfitness.database.model.Exercise;
-import com.example.progressiveoverloadfitness.views.exercises.ExerciseViewHolder;
 
-public class ExerciseListAdaptor extends ListAdapter<Exercise, ExerciseViewHolder> {
+public class ExerciseListAdapter extends ListAdapter<Exercise, ExerciseViewHolder> {
+    private boolean select = false;
+    ExercisesFragment fragment;
 
-    public ExerciseListAdaptor(@NonNull DiffUtil.ItemCallback<Exercise> diffCallBack){
+    public ExerciseListAdapter(@NonNull DiffUtil.ItemCallback<Exercise> diffCallBack){
         super(diffCallBack);
+    }
+
+    public ExerciseListAdapter(@NonNull DiffUtil.ItemCallback<Exercise> diffCallBack, ExercisesFragment fragment){
+        super(diffCallBack);
+        this.fragment = fragment;
+        select = true;
     }
 
     @Override
@@ -24,6 +32,14 @@ public class ExerciseListAdaptor extends ListAdapter<Exercise, ExerciseViewHolde
     public void onBindViewHolder(ExerciseViewHolder holder, int position){
         Exercise current = getItem(position);
         holder.bind(current.getName(), current.getBodyPart());
+        if(this.select){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragment.addSelectedExercise(current.getName());
+                }
+            });
+        }
     }
 
     public static class ExerciseDiff extends DiffUtil.ItemCallback<Exercise>{

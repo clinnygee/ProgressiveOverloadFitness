@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.example.progressiveoverloadfitness.database.POFViewModel;
 import com.example.progressiveoverloadfitness.views.dashboard.DashboardActivity;
-import com.example.progressiveoverloadfitness.views.exercises.ExerciseListAdaptor;
+import com.example.progressiveoverloadfitness.views.exercises.ExerciseListAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(launchIntent);
         overridePendingTransition(0,0);
 
-        ExerciseListAdaptor adapter = new ExerciseListAdaptor(new ExerciseListAdaptor.ExerciseDiff());
+        ExerciseListAdapter adapter = new ExerciseListAdapter(new ExerciseListAdapter.ExerciseDiff());
         mPOFViewModel = new ViewModelProvider(this).get(POFViewModel.class);
 
         mPOFViewModel.getAllExercises().observe(this, exercises -> {

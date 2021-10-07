@@ -33,6 +33,7 @@ public class PerformWorkoutFragment extends Fragment {
     ArrayList<Set> sets;
     Workout workoutData;
     Button cancelWorkout;
+    Button addExercise;
     Button finishWorkout;
 
     // TODO: Rename and change types of parameters
@@ -84,8 +85,15 @@ public class PerformWorkoutFragment extends Fragment {
 
         cancelWorkout = view.findViewById(R.id.cancel_workout);
 
+        addExercise = view.findViewById(R.id.add_exercise);
 
 
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((WorkoutActivity)getActivity()).addExercise();
+            }
+        });
         cancelWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

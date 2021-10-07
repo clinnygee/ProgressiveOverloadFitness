@@ -30,7 +30,7 @@ public class POFRepository {
     private SetDao mSetDao;
     private LiveData<List<Set>> mAllSets;
 
-    POFRepository(Application application){
+    public POFRepository(Application application){
         POFRoomDatabase db = POFRoomDatabase.getDatabase(application);
         mExercisesDao = db.exercisesDao();
         mAllExercises = mExercisesDao.getAlphabetizedExercises();
@@ -47,7 +47,7 @@ public class POFRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    LiveData<List<Exercise>> getAllExercises(){
+    public LiveData<List<Exercise>> getAllExercises(){
         return mAllExercises;
     }
 
@@ -65,5 +65,28 @@ public class POFRepository {
         POFRoomDatabase.databaseWriteExecutor.execute(() -> {
             mExercisesDao.insert(exercise);
         });
+    }
+
+    public Workout insertWorkout(Workout workout){
+        POFRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mWorkoutDao.insertWorkout(workout);
+        });
+        return mWorkoutDao.findWorkoutByStartTime(workout.startTime);
+    }
+
+    public Exercise getExerciseByName(String name){
+        return mExercisesDao.getByName(name);
+    }
+
+    public WorkoutExercise insertWorkoutExercise(WorkoutExercise workoutExercise){
+        mWorkoutExerciseDao.insert(workoutExercise);
+
+        return mWorkoutExerciseDao.findByExerciseAndWorkoutId(workoutExercise.workoutId, workoutExercise.exerciseId);
+    }
+
+    public Set insertSet(Set set){
+        mSetDao.insertSet(set);
+
+        return mSetDao.getSetByWorkoutExercise(set.workoutExerciseId);
     }
 }

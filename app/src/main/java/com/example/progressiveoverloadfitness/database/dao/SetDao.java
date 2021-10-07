@@ -18,6 +18,9 @@ public interface SetDao {
     @Query("Select * FROM `set`")
     LiveData<List<Set>> getAllSets();
 
+    @Query("SELECT * FROM `set` WHERE workout_exercise_id = :workoutExerciseId")
+    Set getSetByWorkoutExercise(int workoutExerciseId);
+
     @Insert(onConflict = OnConflictStrategy.ABORT)
     void insertSet(Set set);
 }

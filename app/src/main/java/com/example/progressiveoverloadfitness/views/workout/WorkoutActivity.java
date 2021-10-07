@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.progressiveoverloadfitness.views.exercises.ExercisesActivity;
+import com.example.progressiveoverloadfitness.views.exercises.ExercisesFragment;
 import com.example.progressiveoverloadfitness.views.history.HistoryActivity;
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.views.dashboard.DashboardActivity;
@@ -24,6 +26,7 @@ public class WorkoutActivity extends AppCompatActivity {
     Button startWorkout;
     WorkoutFragment workoutFragment;
     BottomNavigationView bottomNavigationView;
+    WorkoutViewModel WOVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +38,6 @@ public class WorkoutActivity extends AppCompatActivity {
         //        find the bottom navagation definition, and create a bottomnavigationview from it
         bottomNavigationView = findViewById(R.id.bottom_navigatin_view);
 
-//        NavController navController = Navigation.findNavController(this, R.id.nav_fragment);
-
-//        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -52,17 +52,9 @@ public class WorkoutActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-//        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
-//        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(2);
         menuItem.setChecked(true);
-//        ExerciseListAdaptor adapter = new ExerciseListAdaptor(new ExerciseListAdaptor.ExerciseDiff());
-//        mPOFViewModel = new ViewModelProvider(this).get(POFViewModel.class);
-//
-//        mPOFViewModel.getAllExercises().observe(this, exercises -> {
-//            adapter.submitList(exercises);
-//        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -87,10 +79,11 @@ public class WorkoutActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        WOVM = new ViewModelProvider(this).get(WorkoutViewModel.class);
     }
 
     protected void startWorkout(){
+        WOVM.startWorkout();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PerformWorkoutFragment performWorkoutFragment = new PerformWorkoutFragment();
@@ -109,6 +102,16 @@ public class WorkoutActivity extends AppCompatActivity {
 //        container.setVisibility(View.INVISIBLE);
     }
 
+    protected void addExercise(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        SelectExerciseFragment selectExerciseFragment = new SelectExerciseFragment();
+        ExercisesFragment exercisesFragment = ExercisesFragment.newInstance("true");
+        fragmentTransaction.replace(R.id.workout_fragment_container, exercisesFragment);
+        fragmentTransaction.addToBackStack("add_exercise");
+        fragmentTransaction.commit();
+    }
+
     protected void endWorkout(){
         Fragment workoutFragment =  getSupportFragmentManager().findFragmentById(R.id.workout_fragment_container);
         getSupportFragmentManager().beginTransaction()
@@ -121,5 +124,17 @@ public class WorkoutActivity extends AppCompatActivity {
 //        View container = findViewById(R.id.nav_fragment);
 //
 //        container.setVisibility(View.VISIBLE);
+    }
+
+    public void addSelectedExercise(String name){
+        WOVM.addExercise(name);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack();
+    }
+
+    public void backButton(){
+        Log.d("back", "workoutactivity");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.popBackStack();
     }
 }

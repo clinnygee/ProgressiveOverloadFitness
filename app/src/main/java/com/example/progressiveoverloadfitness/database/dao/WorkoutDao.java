@@ -22,6 +22,9 @@ public interface WorkoutDao {
     @Query("SELECT workout_id FROM workout WHERE start_time = :startTime")
     int findByStartTime(String startTime);
 
+    @Query("SELECT * FROM workout WHERE start_time = :startTime")
+    Workout findWorkoutByStartTime(String startTime);
+
     @Transaction
     @Query("SELECT * FROM workout")
     public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkoutInformation();
