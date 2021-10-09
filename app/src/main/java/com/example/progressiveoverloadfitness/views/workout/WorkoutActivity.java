@@ -82,6 +82,9 @@ public class WorkoutActivity extends AppCompatActivity {
         WOVM = new ViewModelProvider(this).get(WorkoutViewModel.class);
     }
 
+    public WorkoutViewModel getViewModel(){
+        return this.WOVM;
+    }
     protected void startWorkout(){
         WOVM.startWorkout();
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -35,4 +35,12 @@ public class WorkoutExercise {
                 this.exerciseId = exerciseId;
                 this.workoutId = workoutId;
         }
+
+        public int getId(){
+                return this.id;
+        }
+
+        public int getExerciseId() {
+                return exerciseId;
+        }
 }

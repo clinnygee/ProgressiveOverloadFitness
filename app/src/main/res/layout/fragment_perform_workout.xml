@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.workout.WorkoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_workout"
         android:layout_width="match_parent"
@@ -14,135 +14,45 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <EditText
-            android:id="@+id/workout_name_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="default_name"
-            app:layout_constraintTop_toTopOf="@+id/constraint_layout_workout"
-            app:layout_constraintLeft_toLeftOf="@+id/constraint_layout_workout"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/workout_name_edit"
+<!--        <EditText-->
+<!--            android:id="@+id/workout_name_edit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="default_name"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/constraint_layout_workout"-->
+<!--            app:layout_constraintLeft_toLeftOf="@+id/constraint_layout_workout"-->
+<!--            />-->
+
+
+        <ScrollView
+            android:layout_width="394dp"
+            android:layout_height="526dp"
             app:layout_constraintBottom_toTopOf="@id/workout_button_container"
+            app:layout_constraintEnd_toEndOf="@id/workout_button_container"
+            app:layout_constraintHorizontal_bias="0.741"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            android:layout_marginTop="32dp"
             >
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/perform_exercise_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/workout_exercise_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ExerciseName"
-                            app:layout_constraintLeft_toLeftOf="@+id/workout_exercise_title"
-                            app:layout_constraintTop_toTopOf="@+id/workout_exercise_title"
-                            android:textColor="@color/light_blue"
-                            />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@android:drawable/ic_delete"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:adjustViewBounds="true"
-                            android:maxHeight="30dp"
-                            android:maxWidth="30dp"
-                            android:scaleType="fitCenter"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
 
 
-                            app:layout_constraintRight_toRightOf="@+id/workout_exercise_title"
-                            app:layout_constraintTop_toTopOf="@+id/workout_exercise_title"
+                tools:listitem="@layout/perform_workout_recyclerview" />
+        </ScrollView>
 
-                            />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:stretchColumns="0,1,2,3,4"
-                        >
-                        <TableRow>
-                            <TextView
-                                android:text="Set"
-                                android:layout_column="0"
-                                />
-                            <TextView
-                                android:text="Previous"
-                                android:layout_column="1"
-                                />
-                            <TextView android:text="KG"
-                                android:layout_column="2"
-                                />
-                            <TextView android:text="REPS"
-                                android:layout_column="3"
-                                />
-                        </TableRow>
-                        <TableRow>
-                            <TextView
-                                android:text="1"
-                                android:layout_column="0"
-                                android:textColor="@color/light_blue"/>
-                            <TextView
-                                android:text="60 x 6"
-                                android:layout_column="1"
-                                />
-                            <EditText
-                                android:layout_column="2"
-                                />
-                            <EditText
-                                android:layout_column="3"
-                                />
-                        </TableRow>
-                        <TableRow>
-                            <TextView
-                                android:text="2"
-                                android:layout_column="0"
-                                android:textColor="@color/light_blue"/>
-                            <TextView
-                                android:text="70 x 6"
-                                android:layout_column="1"
-                                />
-                            <EditText
-                                android:layout_column="2"
-                                />
-                            <EditText
-                                android:layout_column="3"
-                                />
-                        </TableRow>
-                    </TableLayout>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Add Set"
-                        android:layout_gravity="center"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/light_blue"
-                        android:shadowColor="@color/white"
-                        />
-                </LinearLayout>
-
-            </ScrollView>
-        </LinearLayout>
         <LinearLayout
             android:id="@+id/workout_button_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             app:layout_constraintBottom_toBottomOf="@+id/constraint_layout_workout"
             android:gravity="center"
             >

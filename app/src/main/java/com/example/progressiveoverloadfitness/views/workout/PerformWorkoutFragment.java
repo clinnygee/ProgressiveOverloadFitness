@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.database.model.Set;
 import com.example.progressiveoverloadfitness.database.model.Workout;
 import com.example.progressiveoverloadfitness.database.model.WorkoutExercise;
+import com.example.progressiveoverloadfitness.views.exercises.ExerciseListAdapter;
 
 import java.util.ArrayList;
 
@@ -29,12 +32,11 @@ public class PerformWorkoutFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    ArrayList<WorkoutExercise> workoutExercises;
-    ArrayList<Set> sets;
-    Workout workoutData;
     Button cancelWorkout;
     Button addExercise;
     Button finishWorkout;
+    WorkoutViewModel WOVM;
+    RecyclerView recyclerView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,6 +71,7 @@ public class PerformWorkoutFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -87,6 +90,19 @@ public class PerformWorkoutFragment extends Fragment {
 
         addExercise = view.findViewById(R.id.add_exercise);
 
+        this.WOVM = ((WorkoutActivity)getActivity()).getViewModel();
+
+
+        recyclerView = view.findViewById(R.id.perform_exercise_recycler);
+        PerformWorkoutListAdapter listAdapter = new PerformWorkoutListAdapter(new PerformWorkoutListAdapter.ExerciseDiff(), this);
+        recyclerView.setAdapter(listAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        WOVM.getExercisesWithSets().observe((getActivity()), exerciseWithSet -> {
+            listAdapter.submitList(exerciseWithSet);
+        });
+
+//        WOVM.addExercise("Barbell Squat");
 
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override

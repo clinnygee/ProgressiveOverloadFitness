@@ -25,6 +25,7 @@ public class WorkoutFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     Button startWorkout;
+    WorkoutViewModel WOVM;
 
 
     // TODO: Rename and change types of parameters
@@ -56,6 +57,7 @@ public class WorkoutFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.WOVM = ((WorkoutActivity)getActivity()).getViewModel();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
