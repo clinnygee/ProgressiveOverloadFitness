@@ -59,6 +59,10 @@ public class POFRepository {
 
     LiveData<List<Set>> getAllSets(){return mAllSets;}
 
+    public List<Set> getSetsByExerciseId(int exerciseId){
+        return mSetDao.getAllSetsByExercise(exerciseId);
+    }
+
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     void insertExercise(Exercise exercise){
@@ -71,12 +75,19 @@ public class POFRepository {
         return mAllWorkouts;
     }
 
-    public Workout insertWorkout(Workout workout){
-        POFRoomDatabase.databaseWriteExecutor.execute(() -> {
-            mWorkoutDao.insertWorkout(workout);
-        });
-        return mWorkoutDao.findWorkoutByStartTime(workout.startTime);
+    public void insertWorkout(Workout workout){
+//        POFRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            mWorkoutDao.insertWorkout(workout);
+//        });
+        mWorkoutDao.insertWorkout(workout);
+
     }
+
+    public Workout findWorkoutByStartTime(String startTime){
+        return mWorkoutDao.findWorkoutByStartTime(startTime);
+    }
+
+
 
     public Exercise getExerciseByName(String name){
         return mExercisesDao.getByName(name);

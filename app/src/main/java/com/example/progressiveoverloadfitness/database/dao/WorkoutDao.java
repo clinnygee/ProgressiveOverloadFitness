@@ -27,5 +27,5 @@ public interface WorkoutDao {
 
     @Transaction
     @Query("SELECT * FROM workout")
-    public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkoutInformation();
+    LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkoutInformation();
 }

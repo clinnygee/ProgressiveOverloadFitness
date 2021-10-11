@@ -87,6 +87,7 @@ public class WorkoutActivity extends AppCompatActivity {
     }
     protected void startWorkout(){
         WOVM.startWorkout();
+//        WOVM.addExercise("Barbell Squat");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PerformWorkoutFragment performWorkoutFragment = new PerformWorkoutFragment();

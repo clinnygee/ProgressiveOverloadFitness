@@ -6,7 +6,6 @@ import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.progressiveoverloadfitness.database.POFRepository;
 import com.example.progressiveoverloadfitness.database.model.Exercise;
@@ -60,7 +59,10 @@ public class WorkoutViewModel extends AndroidViewModel {
 
     public void startWorkout(){
         Date startTime = new Date();
-        this.workout = mPOFRepository.insertWorkout(new Workout(false, startTime.toString(), startTime.toString()));
+//        this.workout = new Workout(false, startTime.toString(), startTime.toString());
+        Workout newWorkout = new Workout(false, startTime.toString(), startTime.toString());
+        mPOFRepository.insertWorkout(newWorkout);
+        this.workout = mPOFRepository.findWorkoutByStartTime(startTime.toString());
 //        Log.d("workout", this.workout.toString());
 
     }

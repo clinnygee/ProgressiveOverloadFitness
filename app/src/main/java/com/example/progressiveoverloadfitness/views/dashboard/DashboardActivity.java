@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +16,11 @@ import com.example.progressiveoverloadfitness.views.exercises.ExercisesActivity;
 import com.example.progressiveoverloadfitness.views.history.HistoryActivity;
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.views.workout.WorkoutActivity;
+import com.example.progressiveoverloadfitness.views.workout.WorkoutViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardActivity extends AppCompatActivity {
-
+    DashboardViewModel dashboardViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,8 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
     }
 }

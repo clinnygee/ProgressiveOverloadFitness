@@ -1,5 +1,8 @@
 package com.example.progressiveoverloadfitness.views.workout;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,10 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.database.model.Set;
@@ -116,5 +122,39 @@ public class PerformWorkoutFragment extends Fragment {
                 ((WorkoutActivity)getActivity()).endWorkout();
             }
         });
+    }
+
+    public void addSetDialog(String exerciseName){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        Context context = getActivity();
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        builder.setTitle(exerciseName);
+        final EditText weight = new EditText(context);
+        weight.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        weight.setHint("weight");
+        final EditText reps = new EditText(context);
+        reps.setInputType(InputType.TYPE_CLASS_NUMBER);
+        reps.setHint("reps");
+        layout.addView(weight);
+        layout.addView(reps);
+        builder.setView(layout);
+        double weightValue = 0;
+        int repValue = 0;
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                WOVM.addSet(exerciseName, Integer.parseInt(reps.getText().toString()), Double.parseDouble(weight.getText().toString()));
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }
