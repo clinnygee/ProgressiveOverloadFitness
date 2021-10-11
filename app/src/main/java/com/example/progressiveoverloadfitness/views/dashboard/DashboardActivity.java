@@ -77,7 +77,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+//        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
     }
 }

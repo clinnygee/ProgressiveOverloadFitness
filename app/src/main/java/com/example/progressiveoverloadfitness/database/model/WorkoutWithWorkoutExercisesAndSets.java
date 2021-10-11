@@ -13,4 +13,8 @@ public class WorkoutWithWorkoutExercisesAndSets {
             entityColumn = "workout_id"
     )
     public List<WorkoutExercisesWithSets> exercisesWithSets;
+
+    public int getWorkoutId(){
+        return this.workout.id;
+    }
 }

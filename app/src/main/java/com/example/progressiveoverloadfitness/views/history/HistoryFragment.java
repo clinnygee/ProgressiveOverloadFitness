@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -69,9 +70,17 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_history, container, false);
         // Inflate the layout for this fragment
         historyVM = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
-        List<WorkoutWithWorkoutExercisesAndSets> worokouts = historyVM.getFullWorkouts().getValue();
-        return inflater.inflate(R.layout.fragment_history, container, false);
+        List<WorkoutWithWorkoutExercisesAndSets> workouts = historyVM.getFullWorkouts();
+        recyclerView = view.findViewById(R.id.history_recycler);
+        WorkoutListAdapter adapter = new WorkoutListAdapter(new WorkoutListAdapter.WorkoutDiff(), this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+
+        adapter.submitList(workouts);
+        return view;
     }
 }

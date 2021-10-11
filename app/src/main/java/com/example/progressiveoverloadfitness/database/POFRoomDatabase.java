@@ -42,7 +42,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static POFRoomDatabase getDatabase(final Context context){
-//        context.deleteDatabase("pof_database");
+        context.deleteDatabase("pof_database");
         if(INSTANCE == null){
             synchronized (POFRoomDatabase.class){
                 if(INSTANCE == null){

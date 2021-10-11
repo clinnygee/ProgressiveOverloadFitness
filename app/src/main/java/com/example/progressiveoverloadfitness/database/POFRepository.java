@@ -22,7 +22,7 @@ public class POFRepository {
     private LiveData<List<Exercise>> mAllExercises;
 
     private WorkoutDao mWorkoutDao;
-    private LiveData<List<WorkoutWithWorkoutExercisesAndSets>> mAllWorkouts;
+    private List<WorkoutWithWorkoutExercisesAndSets> mAllWorkouts;
 
     private WorkoutExerciseDao mWorkoutExerciseDao;
     private LiveData<List<WorkoutExercise>> mAllWorkoutExercise;
@@ -51,7 +51,7 @@ public class POFRepository {
         return mAllExercises;
     }
 
-    LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkouts(){ return mAllWorkouts;}
+    List<WorkoutWithWorkoutExercisesAndSets> getAllWorkouts(){ return mAllWorkouts;}
 
     LiveData<List<WorkoutExercise>> getAllWorkoutExercises(){
         return mAllWorkoutExercise;
@@ -71,7 +71,7 @@ public class POFRepository {
         });
     }
 
-    public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getmAllWorkouts() {
+    public List<WorkoutWithWorkoutExercisesAndSets> getmAllWorkouts() {
         return mAllWorkouts;
     }
 

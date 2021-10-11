@@ -13,7 +13,7 @@ import java.util.List;
 public class HistoryViewModel extends AndroidViewModel {
     private POFRepository mPOFRepository;
 
-    private final LiveData<List<WorkoutWithWorkoutExercisesAndSets>> fullWorkouts;
+    private final List<WorkoutWithWorkoutExercisesAndSets> fullWorkouts;
 
     public HistoryViewModel(Application application){
         super(application);
@@ -21,7 +21,7 @@ public class HistoryViewModel extends AndroidViewModel {
         fullWorkouts = mPOFRepository.getmAllWorkouts();
     }
 
-    public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getFullWorkouts() {
+    public List<WorkoutWithWorkoutExercisesAndSets> getFullWorkouts() {
         return fullWorkouts;
     }
 }

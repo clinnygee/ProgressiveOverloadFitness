@@ -16,7 +16,7 @@ public class POFViewModel extends AndroidViewModel {
     private POFRepository mPOFRepository;
 
     private final LiveData<List<Exercise>> mAllExercises;
-    private final LiveData<List<WorkoutWithWorkoutExercisesAndSets>> mAllWorkouts;
+    private final List<WorkoutWithWorkoutExercisesAndSets> mAllWorkouts;
 
     public POFViewModel(Application application){
         super(application);
@@ -30,7 +30,7 @@ public class POFViewModel extends AndroidViewModel {
         return mAllExercises;
     }
 
-    public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getAllWorkouts() {
+    public List<WorkoutWithWorkoutExercisesAndSets> getAllWorkouts() {
         return mAllWorkouts;
     }
 
