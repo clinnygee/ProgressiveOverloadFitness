@@ -3,6 +3,8 @@ package com.example.progressiveoverloadfitness.views.history;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -11,6 +13,9 @@ import android.view.ViewGroup;
 
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.database.POFViewModel;
+import com.example.progressiveoverloadfitness.database.model.WorkoutWithWorkoutExercisesAndSets;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +29,7 @@ public class HistoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
-    private POFViewModel mPOFViewModel;
+    private HistoryViewModel historyVM;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,6 +70,8 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        historyVM = new ViewModelProvider(getActivity()).get(HistoryViewModel.class);
+        List<WorkoutWithWorkoutExercisesAndSets> worokouts = historyVM.getFullWorkouts().getValue();
         return inflater.inflate(R.layout.fragment_history, container, false);
     }
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progressiveoverloadfitness.R;
@@ -14,12 +15,14 @@ import com.example.progressiveoverloadfitness.R;
 class PerformWorkoutListViewHolder extends RecyclerView.ViewHolder{
     private final TextView exerciseName;
     private final Button addSet;
+    private RecyclerView setRecyclerView;
     PerformWorkoutFragment fragment;
 
     private PerformWorkoutListViewHolder(View itemView){
         super(itemView);
         exerciseName = itemView.findViewById(R.id.exercise_name);
         addSet = itemView.findViewById(R.id.add_set_button);
+        setRecyclerView = itemView.findViewById(R.id.set_recycler);
     }
 
     public void bind(ExercisesWithSets exercisesWithSets, PerformWorkoutFragment fragment){
@@ -31,6 +34,10 @@ class PerformWorkoutListViewHolder extends RecyclerView.ViewHolder{
                 fragment.WOVM.addSet(exerciseName.getText().toString(), 8, 80.0);
             }
         });
+        SetRecyclerViewAdapter listAdapter = new SetRecyclerViewAdapter(new SetRecyclerViewAdapter.SetDiff(), exercisesWithSets.getSets());
+        setRecyclerView.setAdapter(listAdapter);
+        setRecyclerView.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
+        listAdapter.submitList(exercisesWithSets.getSets());
     }
 
     static PerformWorkoutListViewHolder create(ViewGroup parent){

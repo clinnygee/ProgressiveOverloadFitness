@@ -67,6 +67,10 @@ public class POFRepository {
         });
     }
 
+    public LiveData<List<WorkoutWithWorkoutExercisesAndSets>> getmAllWorkouts() {
+        return mAllWorkouts;
+    }
+
     public Workout insertWorkout(Workout workout){
         POFRoomDatabase.databaseWriteExecutor.execute(() -> {
             mWorkoutDao.insertWorkout(workout);

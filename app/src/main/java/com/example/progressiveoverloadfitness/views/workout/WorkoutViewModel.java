@@ -61,21 +61,26 @@ public class WorkoutViewModel extends AndroidViewModel {
     public void startWorkout(){
         Date startTime = new Date();
         this.workout = mPOFRepository.insertWorkout(new Workout(false, startTime.toString(), startTime.toString()));
-        Log.d("workout", this.workout.toString());
+//        Log.d("workout", this.workout.toString());
 
     }
 
     public void addExercise(String name){
         ArrayList<ExercisesWithSets> exercisesWithSetsArray = exercisesWithSets.getValue();
         Exercise newExercise = mPOFRepository.getExerciseByName(name);
+//        Log.d("the value of this.work", this.workout.toString());
         if(this.workout == null){
             startWorkout();
+            Log.d("the value of this.work", this.workout.toString());
+        } else {
+
         }
         WorkoutExercise newWorkoutExercise = mPOFRepository.insertWorkoutExercise(new WorkoutExercise(newExercise.getId(), this.workout.id));
         workoutExercises.add(newWorkoutExercise);
         exercisesWithSetsArray.add(new ExercisesWithSets(newWorkoutExercise, name));
         exercisesWithSets.setValue(exercisesWithSetsArray);
         Log.d("exercise", String.valueOf(newWorkoutExercise.exerciseId));
+        addSet(name, 8, 80.0);
     }
 
     public void addSet(String exerciseName, int reps, double weight){
@@ -86,6 +91,7 @@ public class WorkoutViewModel extends AndroidViewModel {
 
         for (ExercisesWithSets exercise : exercisesWithSetsArray) {
             if(exercise.getName().equals(exerciseName)){
+                Log.d("Set", "found the matching exercise");
                 chosenExercise = exercise;
                 break;
             }

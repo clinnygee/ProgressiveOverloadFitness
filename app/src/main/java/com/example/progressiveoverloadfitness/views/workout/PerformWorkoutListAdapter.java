@@ -35,6 +35,7 @@ public class PerformWorkoutListAdapter extends ListAdapter<ExercisesWithSets, Pe
     public void onBindViewHolder(@NonNull @NotNull PerformWorkoutListViewHolder holder, int position) {
         ExercisesWithSets current = getItem(position);
         holder.bind(current, this.fragment);
+
     }
 
     public static class ExerciseDiff extends DiffUtil.ItemCallback<ExercisesWithSets>{
