@@ -79,7 +79,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
                 int exerciseId = exercisesDao.getIdByName("Barbell Bench Press");
 
 
-                WorkoutExercise workoutExercise = new WorkoutExercise(exerciseId, workoutId);
+                WorkoutExercise workoutExercise = new WorkoutExercise(exerciseId, workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 int workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -98,7 +98,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
 //                exerciseId = exercisesDao.getIdByName("Barbell Squat");
                 exerciseId = exercisesDao.getIdByName("Barbell Squat");
 
-                workoutExercise = new WorkoutExercise(exerciseId, workoutId);
+                workoutExercise = new WorkoutExercise(exerciseId, workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -115,7 +115,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
                 exercisesDao.insert(exercise);
 
                 exerciseId = exercisesDao.getIdByName("Barbell Deadlift");
-                workoutExercise = new WorkoutExercise(exerciseId,workoutId);
+                workoutExercise = new WorkoutExercise(exerciseId,workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -132,7 +132,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
                 exercisesDao.insert(exercise);
 
                 exerciseId = exercisesDao.getIdByName("Barbell OHP");
-                workoutExercise = new WorkoutExercise( exerciseId,workoutId);
+                workoutExercise = new WorkoutExercise( exerciseId,workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -156,7 +156,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
                 exerciseId = exercisesDao.getIdByName("Barbell Bench Press");
 
 
-                workoutExercise = new WorkoutExercise(exerciseId, workoutId);
+                workoutExercise = new WorkoutExercise(exerciseId, workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -171,7 +171,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
 
                 exerciseId = exercisesDao.getIdByName("Barbell Squat");
 
-                workoutExercise = new WorkoutExercise(exerciseId, workoutId);
+                workoutExercise = new WorkoutExercise(exerciseId, workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -186,7 +186,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
 //                Third Exercise
 
                 exerciseId = exercisesDao.getIdByName("Barbell Deadlift");
-                workoutExercise = new WorkoutExercise(exerciseId,workoutId);
+                workoutExercise = new WorkoutExercise(exerciseId,workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);
@@ -201,7 +201,7 @@ public abstract class POFRoomDatabase extends RoomDatabase {
 //                Fourth Exercise
 
                 exerciseId = exercisesDao.getIdByName("Barbell OHP");
-                workoutExercise = new WorkoutExercise( exerciseId,workoutId);
+                workoutExercise = new WorkoutExercise( exerciseId,workoutId, exercise.getName());
                 workoutExerciseDao.insert(workoutExercise);
 
                 workoutExerciseId = workoutExerciseDao.findIdByExerciseAndWorkoutId(workoutId, exerciseId);

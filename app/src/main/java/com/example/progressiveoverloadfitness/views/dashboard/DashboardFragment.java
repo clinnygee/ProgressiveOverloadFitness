@@ -64,7 +64,7 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 //        dashboardViewModel = new ViewModelProvider(getActivity()).get(ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).get(DashboardViewModel.class));
-//        dashboardViewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
+        dashboardViewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }

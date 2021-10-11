@@ -77,7 +77,7 @@ public class WorkoutViewModel extends AndroidViewModel {
         } else {
 
         }
-        WorkoutExercise newWorkoutExercise = mPOFRepository.insertWorkoutExercise(new WorkoutExercise(newExercise.getId(), this.workout.id));
+        WorkoutExercise newWorkoutExercise = mPOFRepository.insertWorkoutExercise(new WorkoutExercise(newExercise.getId(), this.workout.id, name));
         workoutExercises.add(newWorkoutExercise);
         exercisesWithSetsArray.add(new ExercisesWithSets(newWorkoutExercise, name));
         exercisesWithSets.setValue(exercisesWithSetsArray);

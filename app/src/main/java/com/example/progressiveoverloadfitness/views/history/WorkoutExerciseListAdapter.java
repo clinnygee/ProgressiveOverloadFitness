@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,11 +18,12 @@ import com.example.progressiveoverloadfitness.database.model.WorkoutExercisesWit
 import org.jetbrains.annotations.NotNull;
 
 public class WorkoutExerciseListAdapter extends ListAdapter<WorkoutExercisesWithSets, WorkoutExerciseListViewHolder> {
+    Fragment fragment;
 
 
-
-    public WorkoutExerciseListAdapter(DiffUtil.ItemCallback<WorkoutExercisesWithSets> workoutExercisesWithSetsItemCallback){
+    public WorkoutExerciseListAdapter(DiffUtil.ItemCallback<WorkoutExercisesWithSets> workoutExercisesWithSetsItemCallback, Fragment fragment){
         super(workoutExercisesWithSetsItemCallback);
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -33,7 +36,7 @@ public class WorkoutExerciseListAdapter extends ListAdapter<WorkoutExercisesWith
     @Override
     public void onBindViewHolder(@NonNull @NotNull WorkoutExerciseListViewHolder holder, int position) {
         WorkoutExercisesWithSets current = getItem(position);
-        holder.bind(current);
+        holder.bind(current, this.fragment);
     }
 
     public static class WorkoutExerciseDiff extends DiffUtil.ItemCallback<WorkoutExercisesWithSets>{
@@ -51,14 +54,21 @@ public class WorkoutExerciseListAdapter extends ListAdapter<WorkoutExercisesWith
 
  class WorkoutExerciseListViewHolder extends RecyclerView.ViewHolder {
     private TextView title;
+    private Fragment fragment;
+    private RecyclerView setRecycler;
     private WorkoutExerciseListViewHolder(View itemView){
         super(itemView);
         title = itemView.findViewById(R.id.history_exercise_name);
+        setRecycler = itemView.findViewById(R.id.history_set_recyclerview);
     }
 
-    public void bind(WorkoutExercisesWithSets workoutExerciseWithSets){
-        WorkoutExercisesWithSets hello = workoutExerciseWithSets;
-        title.setText(Integer.toString(workoutExerciseWithSets.workoutExercises.id));
+    public void bind(WorkoutExercisesWithSets workoutExerciseWithSets, Fragment fragment){
+        this.fragment = fragment;
+        title.setText(workoutExerciseWithSets.workoutExercises.getName());
+        SetListAdapter setListAdapter = new SetListAdapter(new SetListAdapter.SetDiff());
+        setRecycler.setAdapter(setListAdapter);
+        setRecycler.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
+        setListAdapter.submitList(workoutExerciseWithSets.sets);
     }
     static WorkoutExerciseListViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())

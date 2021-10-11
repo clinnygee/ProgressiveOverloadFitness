@@ -9,16 +9,11 @@
     android:orientation="vertical"
     >
     <TextView
-        android:id="@+id/history_exercise_name"
+        android:id="@+id/history_set_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Barbell Bench"
-        android:textColor="#000000"
+        android:text="40.0 x 6"
+        android:layout_marginLeft="6dp"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/history_set_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/history_workout_set_recyclerview"
-        />
+
 </LinearLayout>

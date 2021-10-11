@@ -57,7 +57,7 @@ public class POFRepository {
         return mAllWorkoutExercise;
     }
 
-    LiveData<List<Set>> getAllSets(){return mAllSets;}
+    public LiveData<List<Set>> getAllSets(){return mAllSets;}
 
     public List<Set> getSetsByExerciseId(int exerciseId){
         return mSetDao.getAllSetsByExercise(exerciseId);

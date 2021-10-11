@@ -36,7 +36,7 @@ public class WorkoutListViewHolder extends RecyclerView.ViewHolder {
 
         workoutDate.setText(formattedDate);
 
-        WorkoutExerciseListAdapter listAdapter = new WorkoutExerciseListAdapter(new WorkoutExerciseListAdapter.WorkoutExerciseDiff());
+        WorkoutExerciseListAdapter listAdapter = new WorkoutExerciseListAdapter(new WorkoutExerciseListAdapter.WorkoutExerciseDiff(), fragment);
         exerciseRecycler.setAdapter(listAdapter);
         exerciseRecycler.setLayoutManager(new LinearLayoutManager(fragment.getActivity()));
         listAdapter.submitList(workoutWithWorkoutExercisesAndSets.exercisesWithSets);

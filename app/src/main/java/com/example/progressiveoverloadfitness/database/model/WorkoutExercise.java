@@ -31,9 +31,13 @@ public class WorkoutExercise {
         @ColumnInfo(name = "workout_id")
         public int workoutId;
 
-        public WorkoutExercise(@NonNull int exerciseId, @NonNull int workoutId){
+        @ColumnInfo(name = "exercise_name")
+        public String name;
+
+        public WorkoutExercise(@NonNull int exerciseId, @NonNull int workoutId, @NonNull String name){
                 this.exerciseId = exerciseId;
                 this.workoutId = workoutId;
+                this.name = name;
         }
 
         public int getId(){
@@ -42,5 +46,9 @@ public class WorkoutExercise {
 
         public int getExerciseId() {
                 return exerciseId;
+        }
+
+        public String getName() {
+                return name;
         }
 }
