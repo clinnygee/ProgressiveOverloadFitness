@@ -5,11 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".views.dashboard.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Dashboard" />
+        android:orientation="vertical"
+        android:layout_marginBottom="60dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+
+        >
+        <Button
+            android:id="@+id/track_exercise_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Track Exercise"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/light_blue"
+            android:shadowColor="@color/white"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dashboard_graph_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/dashboard_graph_recyclerview"
+            />
+    </LinearLayout>
 
 
 </FrameLayout>

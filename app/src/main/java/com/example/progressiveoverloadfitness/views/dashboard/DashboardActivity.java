@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.progressiveoverloadfitness.views.exercises.ExercisesActivity;
+import com.example.progressiveoverloadfitness.views.exercises.ExercisesFragment;
 import com.example.progressiveoverloadfitness.views.history.HistoryActivity;
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.views.workout.WorkoutActivity;
@@ -79,5 +80,15 @@ public class DashboardActivity extends AppCompatActivity {
 
 //        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
+    }
+
+    public void startTrackExerciseFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        SelectExerciseFragment selectExerciseFragment = new SelectExerciseFragment();
+        ExercisesFragment exercisesFragment = ExercisesFragment.newInstance("true");
+        fragmentTransaction.replace(R.id.dashboard_fragment_container, exercisesFragment);
+        fragmentTransaction.addToBackStack("add_exercise");
+        fragmentTransaction.commit();
     }
 }

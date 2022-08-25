@@ -37,10 +37,14 @@ public class Set {
         @ColumnInfo(name = "reps")
         public int reps;
 
-        public Set(@NonNull int workoutExerciseId, @NonNull int exercise_id, @NonNull double weight, @NonNull int reps){
+        @ColumnInfo(name = "day")
+        public String day;
+
+        public Set(@NonNull int workoutExerciseId, @NonNull int exercise_id, @NonNull double weight, @NonNull int reps, @NonNull String day){
                 this.exercise_id = exercise_id;
                 this.workoutExerciseId = workoutExerciseId;
                 this.weight = weight;
                 this.reps = reps;
+                this.day = day;
         }
 }

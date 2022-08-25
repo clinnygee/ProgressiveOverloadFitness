@@ -25,7 +25,7 @@ class SetViewHolder extends RecyclerView.ViewHolder{
     public void bind(Set set, int position){
 //        exerciseName.setText(exercisesWithSets.getName());
 //        this.fragment = fragment;
-        setNumber.setText(position);
+        setNumber.setText(String.valueOf(position));
         setWeight.setText(String.valueOf(set.weight));
         setReps.setText(String.valueOf(set.reps));
     }

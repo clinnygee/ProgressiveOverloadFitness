@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.progressiveoverloadfitness.R;
@@ -33,10 +34,10 @@ class PerformWorkoutListViewHolder extends RecyclerView.ViewHolder{
                 fragment.addSetDialog(exercisesWithSets.getName());
             }
         });
-//        SetRecyclerViewAdapter listAdapter = new SetRecyclerViewAdapter(new SetRecyclerViewAdapter.SetDiff(), exercisesWithSets.getSets());
-//        setRecyclerView.setAdapter(listAdapter);
-//        setRecyclerView.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
-//        listAdapter.submitList(exercisesWithSets.getSets());
+        SetRecyclerViewAdapter listAdapter = new SetRecyclerViewAdapter(new SetRecyclerViewAdapter.SetDiff(), exercisesWithSets.getSets());
+        setRecyclerView.setAdapter(listAdapter);
+        setRecyclerView.setLayoutManager(new LinearLayoutManager(fragment.getContext()));
+        listAdapter.submitList(exercisesWithSets.getSets());
     }
 
     static PerformWorkoutListViewHolder create(ViewGroup parent){

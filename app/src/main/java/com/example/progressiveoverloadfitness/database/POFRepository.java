@@ -4,10 +4,12 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.progressiveoverloadfitness.database.dao.DashboardItemDao;
 import com.example.progressiveoverloadfitness.database.dao.ExercisesDao;
 import com.example.progressiveoverloadfitness.database.dao.SetDao;
 import com.example.progressiveoverloadfitness.database.dao.WorkoutDao;
 import com.example.progressiveoverloadfitness.database.dao.WorkoutExerciseDao;
+import com.example.progressiveoverloadfitness.database.model.DashboardItemWithExercisesAndSets;
 import com.example.progressiveoverloadfitness.database.model.Exercise;
 import com.example.progressiveoverloadfitness.database.model.Set;
 import com.example.progressiveoverloadfitness.database.model.Workout;
@@ -25,10 +27,13 @@ public class POFRepository {
     private List<WorkoutWithWorkoutExercisesAndSets> mAllWorkouts;
 
     private WorkoutExerciseDao mWorkoutExerciseDao;
-    private LiveData<List<WorkoutExercise>> mAllWorkoutExercise;
+    private List<WorkoutExercise> mAllWorkoutExercise;
 
     private SetDao mSetDao;
     private LiveData<List<Set>> mAllSets;
+
+    private DashboardItemDao mDashboardItemDao;
+    private List<DashboardItemWithExercisesAndSets> mAllDashboardItems;
 
     public POFRepository(Application application){
         POFRoomDatabase db = POFRoomDatabase.getDatabase(application);
@@ -43,6 +48,9 @@ public class POFRepository {
 
         mSetDao = db.setDao();
         mAllSets = mSetDao.getAllSets();
+
+        mDashboardItemDao = db.dashboardItemDao();
+        mAllDashboardItems = mDashboardItemDao.getAllDashboardItems();
     }
 
     // Room executes all queries on a separate thread.
@@ -53,7 +61,9 @@ public class POFRepository {
 
     List<WorkoutWithWorkoutExercisesAndSets> getAllWorkouts(){ return mAllWorkouts;}
 
-    LiveData<List<WorkoutExercise>> getAllWorkoutExercises(){
+    public List<DashboardItemWithExercisesAndSets> getAllDashboardItems(){return mAllDashboardItems;}
+
+    List<WorkoutExercise> getAllWorkoutExercises(){
         return mAllWorkoutExercise;
     }
 

@@ -16,7 +16,7 @@
         android:id="@+id/workout_exercise_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
 
         >
         <TextView
@@ -45,38 +45,56 @@
 
 <!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TableLayout
+<!--    <TableLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:stretchColumns="0,1,2,3,4"-->
+<!--        >-->
+<!--        <TableRow>-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2,3,4"
+        android:orientation="horizontal"
         >
-        <TableRow>
-            <TextView
-                android:text="Set"
-                android:layout_column="0"
-                />
-            <TextView
-                android:text="Previous"
-                android:layout_column="1"
-                />
-            <TextView android:text="KG"
-                android:layout_column="2"
-                />
-            <TextView android:text="REPS"
-                android:layout_column="3"
-                />
-        </TableRow>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/set_recycler"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
+            android:layout_weight=".25"
+            android:text="Set"
 
-
-            tools:listitem="@layout/set_recyclerview"
             />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:text="Previous"
 
-    </TableLayout>
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:text="KG"
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:text="REPS"
+
+            />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/set_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+
+
+        tools:listitem="@layout/set_recyclerview"
+        />
+
     <Button
         android:id="@+id/add_set_button"
         android:layout_width="wrap_content"

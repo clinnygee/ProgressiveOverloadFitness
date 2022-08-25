@@ -3,14 +3,24 @@ package com.example.progressiveoverloadfitness.views.dashboard;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.progressiveoverloadfitness.R;
+import com.example.progressiveoverloadfitness.database.model.DashboardItemWithExercisesAndSets;
+import com.example.progressiveoverloadfitness.database.model.WorkoutExercisesWithSets;
+import com.example.progressiveoverloadfitness.views.exercises.ExercisesFragment;
 import com.example.progressiveoverloadfitness.views.workout.WorkoutViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +34,8 @@ public class DashboardFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     DashboardViewModel dashboardViewModel;
+    RecyclerView graphRecyclerView;
+    private Button addExercise;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -63,9 +75,21 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        dashboardViewModel = new ViewModelProvider(getActivity()).get(ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).get(DashboardViewModel.class));
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        addExercise = view.findViewById(R.id.track_exercise_button);
+
         dashboardViewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        List<DashboardItemWithExercisesAndSets> workoutExercisesWithSetsList = dashboardViewModel.getAllItems();
+        graphRecyclerView = view.findViewById(R.id.dashboard_graph_recycler);
+        DashboardGraphListAdapter listAdapter = new DashboardGraphListAdapter(new DashboardGraphListAdapter.DashboardDiff());
+        graphRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        graphRecyclerView.setAdapter(listAdapter);
+
+        listAdapter.submitList(workoutExercisesWithSetsList);
+
+        return view;
     }
+
+
 }

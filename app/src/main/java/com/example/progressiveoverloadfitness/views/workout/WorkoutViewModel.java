@@ -42,6 +42,11 @@ public class WorkoutViewModel extends AndroidViewModel {
 //        return instance;
 //    }
 
+
+    public Workout getWorkout() {
+        return workout;
+    }
+
     public LiveData<List<Exercise>> getAllExercises(){
         return mAllExercises;
     }
@@ -80,9 +85,10 @@ public class WorkoutViewModel extends AndroidViewModel {
         WorkoutExercise newWorkoutExercise = mPOFRepository.insertWorkoutExercise(new WorkoutExercise(newExercise.getId(), this.workout.id, name));
         workoutExercises.add(newWorkoutExercise);
         exercisesWithSetsArray.add(new ExercisesWithSets(newWorkoutExercise, name));
+//        exercisesWithSets.setValue(exercisesWithSetsArray);
         exercisesWithSets.setValue(exercisesWithSetsArray);
         Log.d("exercise", String.valueOf(newWorkoutExercise.exerciseId));
-        addSet(name, 8, 80.0);
+//        addSet(name, 8, 80.0);
     }
 
     public void addSet(String exerciseName, int reps, double weight){
@@ -99,9 +105,13 @@ public class WorkoutViewModel extends AndroidViewModel {
             }
         }
         if(chosenExercise != null){
-            Set set = new Set(chosenExercise.getExercise().getId(), chosenExercise.getExercise().getExerciseId(), weight, reps);
+            Log.d("Set", "it's not null");
+            Set set = new Set(chosenExercise.getExercise().getId(), chosenExercise.getExercise().getExerciseId(), weight, reps, this.workout.startTime);
             Set addedSet = mPOFRepository.insertSet(set);
             chosenExercise.addSet(addedSet);
+//            exercisesWithSets.setValue(exercisesWithSetsArray);
+            ArrayList<ExercisesWithSets> temp = new ArrayList<>();
+            exercisesWithSets.setValue(temp);
             exercisesWithSets.setValue(exercisesWithSetsArray);
         }
 

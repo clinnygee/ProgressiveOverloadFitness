@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.progressiveoverloadfitness.R;
 import com.example.progressiveoverloadfitness.database.model.Set;
@@ -26,6 +28,8 @@ import com.example.progressiveoverloadfitness.database.model.WorkoutExercise;
 import com.example.progressiveoverloadfitness.views.exercises.ExerciseListAdapter;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +47,7 @@ public class PerformWorkoutFragment extends Fragment {
     Button finishWorkout;
     WorkoutViewModel WOVM;
     RecyclerView recyclerView;
+    TextView timer;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -93,9 +98,10 @@ public class PerformWorkoutFragment extends Fragment {
 
 
         cancelWorkout = view.findViewById(R.id.cancel_workout);
-
+        finishWorkout = view.findViewById(R.id.finish_workout);
         addExercise = view.findViewById(R.id.add_exercise);
-
+        timer = view.findViewById(R.id.timer);
+        startTimer();
         this.WOVM = ((WorkoutActivity)getActivity()).getViewModel();
 
 
@@ -114,6 +120,12 @@ public class PerformWorkoutFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((WorkoutActivity)getActivity()).addExercise();
+            }
+        });
+        finishWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((WorkoutActivity)getActivity()).endWorkout();
             }
         });
         cancelWorkout.setOnClickListener(new View.OnClickListener() {
@@ -156,5 +168,31 @@ public class PerformWorkoutFragment extends Fragment {
             }
         });
         builder.show();
+    }
+
+    public void startTimer(){
+
+        final Handler handler = new Handler();
+//        long elapsed = 0;
+        handler.post(new Runnable() {
+            long millis = 0;
+            TextView timeView = timer;
+            @Override
+            public void run() {
+                millis += 1000;
+                String elapsedString = String.format("%02d:%02d:%02d",
+                        TimeUnit.MILLISECONDS.toHours(millis),
+                        TimeUnit.MILLISECONDS.toMinutes(millis) -
+                                TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), // The change is in this line
+                        TimeUnit.MILLISECONDS.toSeconds(millis) -
+                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                timeView.setText(elapsedString);
+                handler.postDelayed(this, 1000);
+            }
+        });
+    }
+
+    public void updateTimer(){
+
     }
 }
